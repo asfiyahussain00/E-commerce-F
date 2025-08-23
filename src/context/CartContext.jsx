@@ -9,7 +9,8 @@ export function CartProvider({ children }) {
   const { isAuthenticated } = useAuth();
   const token = localStorage.getItem("token");
 
-  const BACKEND_URL = import.meta.env.VITE_BACKEND_URL; // ✅ env variable
+  // ✅ Direct backend URL
+  const BACKEND_URL = "https://e-commerce-b-sg3p.vercel.app";
 
   // Load cart from backend
   useEffect(() => {
@@ -21,7 +22,7 @@ export function CartProvider({ children }) {
       .then((res) => res.json())
       .then((data) => setCartItems(data.products || []))
       .catch((err) => console.error("Error fetching cart:", err));
-  }, [isAuthenticated, token, BACKEND_URL]);
+  }, [isAuthenticated, token]);
 
   // Add to cart
   const addToCart = async (product) => {
