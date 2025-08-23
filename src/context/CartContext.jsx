@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect } from "react";
-import { useAuth } from "../context/AuthContext"; // assuming you have AuthContext
+import { useAuth } from "../context/AuthContext";
 import Swal from "sweetalert2";
 
 export const CartContext = createContext();
@@ -9,7 +9,7 @@ export function CartProvider({ children }) {
   const { isAuthenticated } = useAuth();
   const token = localStorage.getItem("token");
 
-  // ✅ Direct backend URL
+  // ✅ Live backend URL
   const BACKEND_URL = "https://e-commerce-b-sg3p.vercel.app";
 
   // Load cart from backend
@@ -43,7 +43,6 @@ export function CartProvider({ children }) {
       const data = await res.json();
       setCartItems(data.products || []);
 
-      // SweetAlert
       Swal.fire({
         icon: "success",
         title: "Added to Cart!",
